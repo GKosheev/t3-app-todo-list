@@ -1,9 +1,9 @@
 import { type NextPage } from "next";
 import Head from "next/head";
-import Link from "next/link";
 import { signIn, signOut, useSession } from "next-auth/react";
 
 import { trpc } from "../utils/trpc";
+import Link from "next/link";
 
 const Home: NextPage = () => {
   const hello = trpc.example.hello.useQuery({ text: "from tRPC" });
@@ -20,7 +20,7 @@ const Home: NextPage = () => {
           <h1 className="text-5xl font-extrabold tracking-tight text-white sm:text-[5rem]">
             Create <span className="text-[hsl(280,100%,70%)]">T3</span> App
           </h1>
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:gap-8">
+          {/* <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:gap-8">
             <Link
               className="flex max-w-xs flex-col gap-4 rounded-xl bg-white/10 p-4 text-white hover:bg-white/20"
               href="https://create.t3.gg/en/usage/first-steps"
@@ -43,7 +43,7 @@ const Home: NextPage = () => {
                 to deploy it.
               </div>
             </Link>
-          </div>
+          </div> */}
           <div className="flex flex-col items-center gap-2">
             <p className="text-2xl text-white">
               {hello.data ? hello.data.greeting : "Loading tRPC query..."}
@@ -63,7 +63,7 @@ const AuthShowcase: React.FC = () => {
 
   const { data: secretMessage } = trpc.auth.getSecretMessage.useQuery(
     undefined, // no input
-    { enabled: sessionData?.user !== undefined },
+    { enabled: sessionData?.user !== undefined }
   );
 
   return (
@@ -72,12 +72,12 @@ const AuthShowcase: React.FC = () => {
         {sessionData && <span>Logged in as {sessionData.user?.name}</span>}
         {secretMessage && <span> - {secretMessage}</span>}
       </p>
-      <button
+      <Link
         className="rounded-full bg-white/10 px-10 py-3 font-semibold text-white no-underline transition hover:bg-white/20"
-        onClick={sessionData ? () => signOut() : () => signIn()}
+        href="/todo"
       >
-        {sessionData ? "Sign out" : "Sign in"}
-      </button>
+        Check Tasks
+      </Link>
     </div>
   );
 };

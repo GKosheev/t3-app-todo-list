@@ -9,5 +9,5 @@ export const exampleRouter = router({
       return {
         greeting: `Hello ${input?.text ?? "world"}`,
       };
-    })
+    }),
 });
