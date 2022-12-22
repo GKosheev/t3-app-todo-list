@@ -4,7 +4,7 @@ import { useSession } from "next-auth/react";
 
 import { trpc } from "../utils/trpc";
 import Tasks from "../components/Tasks";
-import { ChangeEvent, useEffect, useState } from "react";
+import { ChangeEvent, useState } from "react";
 
 import type { inferRouterOutputs } from "@trpc/server";
 import { todoRouter } from "../server/trpc/router/todo";

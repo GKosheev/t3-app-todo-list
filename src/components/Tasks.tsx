@@ -1,7 +1,7 @@
 import React from "react";
 import Task from "./Task";
 
-import type { inferRouterInputs, inferRouterOutputs } from "@trpc/server";
+import type { inferRouterOutputs } from "@trpc/server";
 import { todoRouter } from "../server/trpc/router/todo";
 
 type TodoRouterOutput = inferRouterOutputs<typeof todoRouter>;
@@ -16,7 +16,7 @@ const Tasks: React.FC<{
   return (
     <>
       <h1 className="mb-6 text-center text-2xl font-semibold uppercase text-blue-600">
-        {props.tasks.length ? "Task List" : "List is Empty"}    
+        {props.tasks.length ? "Task List" : "List is Empty"}
       </h1>
       {props.tasks.map((task) => (
         <Task
